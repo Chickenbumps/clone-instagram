@@ -1,6 +1,16 @@
-import { USER_DATA_CHANGE, USER_POSTS_STATE_CHANGE } from "../type/type";
+import {
+  USER_DATA_CHANGE,
+  USER_POSTS_STATE_CHANGE,
+  USER_FOLLOWING_STATE_CHANGE,
+} from "../type/type";
 
-export default function (state = {}, action) {
+const initialState = {
+  users: null,
+  posts: [],
+  following: [],
+};
+
+export default function (state = initialState, action) {
   switch (action.type) {
     case USER_DATA_CHANGE:
       return {
@@ -11,6 +21,11 @@ export default function (state = {}, action) {
       return {
         ...state,
         posts: action.payload,
+      };
+    case USER_FOLLOWING_STATE_CHANGE:
+      return {
+        ...state,
+        following: action.payload,
       };
     default:
       return state;
